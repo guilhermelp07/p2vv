@@ -1,18 +1,8 @@
 /// <reference types ="cypress" />
 
-function login(){
-    // Login
-    cy.visit('https://saucedemo.com/')
-    wait()
-    cy.get('input[id=user-name]').type('standard_user')
-    wait()
-    cy.get('input[id=password]').type('secret_sauce')
-    wait()
-    cy.get('[data-test="login-button"]').click()
-    wait()
-}
+import { login, setCypress, wait } from "./service"
 
-function wait(){ cy.wait(1000) }
+setCypress(cy);
 
 describe('Todos os Cenários', () => {
   it('Todos os Cenários', () => {
@@ -21,7 +11,6 @@ describe('Todos os Cenários', () => {
         cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
         wait()
         cy.get('[id="shopping_cart_container"]').click()
-
         wait()
         cy.get('[data-test="checkout"]').click()
         wait()
