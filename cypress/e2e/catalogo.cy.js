@@ -10,7 +10,7 @@ describe('Cenário 2: Catálogo de Produtos', () => {
     })
 
     afterEach(() => {
-        wait2(2000)
+        wait2(2500)
     })
 
     it('Verificar se todos os produtos estão listados', () => {
@@ -49,11 +49,17 @@ describe('Cenário 2: Catálogo de Produtos', () => {
       cy.get('.inventory_item_name').first().should('have.text', 'Sauce Labs Backpack')
       cy.get('.inventory_item_name').last().should('have.text', 'Test.allTheThings() T-Shirt (Red)')
 
+      cy.get('footer').scrollIntoView()
+      wait()
+
       // Filtro Z-A
       cy.get('[data-test="product_sort_container"]').select('za')
       wait()
       cy.get('.inventory_item_name').first().should('have.text', 'Test.allTheThings() T-Shirt (Red)')
       cy.get('.inventory_item_name').last().should('have.text', 'Sauce Labs Backpack')
+
+      cy.get('footer').scrollIntoView()
+      wait()
 
       // Ordenado pelo preço mais baixo
       cy.get('[data-test="product_sort_container"]').select('lohi')
@@ -61,10 +67,15 @@ describe('Cenário 2: Catálogo de Produtos', () => {
       cy.get('.inventory_item_price').first().should('have.text', '$7.99')
       cy.get('.inventory_item_price').last().should('have.text', '$49.99')
 
+      cy.get('footer').scrollIntoView()
+      wait()
+
       // Preço mais alto
       cy.get('[data-test="product_sort_container"]').select('hilo')
       wait()
       cy.get('.inventory_item_price').first().should('have.text', '$49.99')
       cy.get('.inventory_item_price').last().should('have.text', '$7.99')
+
+      cy.get('footer').scrollIntoView()
     })
   })
