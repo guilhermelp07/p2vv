@@ -1,16 +1,15 @@
 /// <reference types="cypress" />
 
-import { login, setCypress, wait, wait2 } from "./service"
+import { logOut, login, setCypress, wait, wait2 } from "./service"
 
 setCypress(cy)
 
 describe('Cenário 2: Catálogo de Produtos', () => {
-    beforeEach(() => {
-        login()
-    })
+
+    beforeEach(login)
 
     afterEach(() => {
-        wait2(2500)
+      logOut()
     })
 
     it('Verificar se todos os produtos estão listados', () => {

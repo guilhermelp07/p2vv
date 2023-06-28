@@ -1,10 +1,13 @@
 /// <reference types="cypress" />
 
-import { login, setCypress, wait, wait2 } from "./service"
+import { logOut, login, setCypress, wait } from "./service"
 
 setCypress(cy);
 
 describe('Cenário 1: Login e Navegação', () => {
+
+    afterEach(logOut);
+
     it('Login e redirecionamento', () => {
         // login
         cy.visit('https://saucedemo.com/')
@@ -22,12 +25,9 @@ describe('Cenário 1: Login e Navegação', () => {
     it('Navegação', () => {
         login()
 
-        // verificando os fluxos
-        // cy.get('.inventory_item_name').each(($el, index) => {
-        //     wait2(1000)
-        //     cy.wrap($el).click()
-        //     cy.get('[data-test="back-to-products"]').click()
-        // })
+        cy.get('#react-burger-menu-btn').click()
+        wait()
+        cy.get('#react-burger-cross-btn').click()
 
         // abrindo os detalhes de cada produto
         for(var i=0; i<6; i++){
